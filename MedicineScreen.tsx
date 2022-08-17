@@ -3,7 +3,15 @@ import { Text, Button, Image, View, Pressable, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 
+const medicine={
+    drugName:'MOXIKIND CV 625MG TAB ',
+    dosageRoute:'Per Oral - After Food',
+    frequency:'1 - 0 - 1',
+    duration:'5 Days',
+    generics:'YES',
+    refills:'2'
 
+}
 const styles = StyleSheet.create({  
     heading: {  
       fontSize: 14,  
@@ -17,11 +25,14 @@ const styles = StyleSheet.create({
       // color:'black',
       backgroundColor: 'white',  
       borderRadius: 8, 
+      // borderColor:'#00000029',
+      // borderColor:'red',
       // paddingVertical: 45,  
       // paddingHorizontal: 25,  
       width: '90%',  
       marginVertical: 20,  
       marginHorizontal:20,
+      elevation:4
     },  
     shadowProp: {  
       shadowOffset: {width: -2, height: 4},  
@@ -89,10 +100,11 @@ const styles = StyleSheet.create({
   }
   });
 const MedicineScreen = ({navigation}) => {
+  const [drugData,setDrudData] = React.useState(medicine)
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      <View style={{height:70, width:'100%', flexDirection:'row' }}>
+      <View style={{height:70, width:'100%', flexDirection:'row' }} >
 
       <View style={{marginVertical:10, marginHorizontal:5}}>
         <Pressable style={styles.button} >
@@ -116,7 +128,6 @@ const MedicineScreen = ({navigation}) => {
       </View>
       </View>
       </ScrollView>
-      {/* <View style={{alignItems: 'center'}}> */}
         <Pressable style={[styles.addButton,{alignSelf:'center'}]} onPress={()=>{navigation.navigate("new")}}>
           <View style={{height:25,width:'100%',flexDirection:'row',}}>
           <Image
@@ -129,26 +140,27 @@ const MedicineScreen = ({navigation}) => {
           </View>
       
     </Pressable>
-      <View style={[styles.card, styles.shadowProp]}> 
+      <View style={[styles.card]}> 
+      <Pressable onPress={()=>{navigation.navigate("appointmentDetails")}}>
       <View style={{ paddingHorizontal:20}}>
       <View style={{height:50,width:'100%',flexDirection:'row',}}>
       <View style={{height:'100%',width:'80%'}}>
-      <View>  
+      <View> 
         <Text numberOfLines={2} style={styles.heading}>  
-        MOXIKIND CV 625MG TAB 
+       {drugData.drugName}
         </Text>  
         <Text numberOfLines={2} style={{color:'#747474'}}>
-          Per Oral - After Food
+          {drugData.dosageRoute}
           </Text>
       </View>
       </View>
       <View style={{height:'100%',width:'20%'}}>
       <View>  
         <Text style={styles.heading}>  
-        1-0-1
+        {drugData.frequency}
         </Text>  
         <Text style={{color:'#747474'}}>
-          5 Days
+          {drugData.duration}
           </Text>
         </View>
         </View>
@@ -160,7 +172,7 @@ const MedicineScreen = ({navigation}) => {
         Allow Generics: 
         </Text>
         <Text style={{fontFamily:'Roboto', fontWeight:'bold',marginTop:15, color:'#747474'}}>  
-        YES
+        {drugData.generics}
         </Text>
       </View>
       <View style={{height:'100%',width:'20%',alignItems:'center',flexDirection:'row'}}>
@@ -170,7 +182,7 @@ const MedicineScreen = ({navigation}) => {
         </Text>
         <View style={{height:25,width:25,borderRadius:12,backgroundColor:'#73C4CC',justifyContent:'center',alignItems:'center',left:10}}>
         <Text style={{fontFamily:'Roboto', color:'white',fontSize:11,fontWeight:'bold' }}>  
-        2
+        {drugData.refills}
         </Text>
         </View>
         
@@ -210,7 +222,8 @@ const MedicineScreen = ({navigation}) => {
         </View>
         </View>
     
-
+</Pressable>
+        
         </View>
         <Pressable>
           <View>

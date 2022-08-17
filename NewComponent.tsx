@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Image, Pressable, ScrollView, StyleSheet, Text, View,TextInput } from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown'
 import { RadioButton,  } from 'react-native-paper';
@@ -62,75 +62,102 @@ const styles = StyleSheet.create({
          marginVertical:20        
       }
      })
+     const DrugNameList =  [
+      { label: 'Human Mixtard 30/70 IU', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+      { label: 'Item 6', value: '6' },
+      { label: 'Item 7', value: '7' },
+      { label: 'Item 8', value: '8' },
+    ]
+    const DosageRouteList = [
+      { label: 'Subcutaneous', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+      { label: 'Item 6', value: '6' },
+      { label: 'Item 7', value: '7' },
+      { label: 'Item 8', value: '8' },
+    ];
+    const FrequencyList = [
+      { label: 'Morning Before Sleep', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+      { label: 'Item 6', value: '6' },
+      { label: 'Item 7', value: '7' },
+      { label: 'Item 8', value: '8' },
+    ];
+    const DurationList = [
+      { label: '15 Days', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+      { label: 'Item 6', value: '6' },
+      { label: 'Item 7', value: '7' },
+      { label: 'Item 8', value: '8' },
+    ];
+    const AllowRefillsList = [
+      { label: 'Allow Once', value: '1' },
+      { label: 'Item 2', value: '2' },
+      { label: 'Item 3', value: '3' },
+      { label: 'Item 4', value: '4' },
+      { label: 'Item 5', value: '5' },
+      { label: 'Item 6', value: '6' },
+      { label: 'Item 7', value: '7' },
+      { label: 'Item 8', value: '8' },
+    ];
+    const AllowGenerics = [
+     {value:'yes'},
+     {value:'no', }
+    ]
 const NewComponent = () => {
+    const [DrugName,setDrugName]= useState(DrugNameList)
+    const [DosageRoute,setDosageRoute]= useState(DosageRouteList);
+    const [Frequency,setFrequency]= useState(FrequencyList );
+    const [Duration,setDuration]= useState(DurationList);
+    const [Instruction,setInstruction]= useState('' );
+    const [AllowRefills,setAllowRefills]= useState(AllowRefillsList );
+    const [value, setValue] = React.useState('yes');
+  const [myObj,setObj]=React.useState({
+    Name:'',
+    Route:'',
+    freq:'',
+    dur:'',
+    instr:'',
+    refills:'',
+    generics:'',
+    
+  })
+ 
     // const [checked, setChecked] = React.useState('first');
-    const DrugName = [
-        { label: 'Human Mixtard 30/70 IU', value: '1' },
-        { label: 'Item 2', value: '2' },
-        { label: 'Item 3', value: '3' },
-        { label: 'Item 4', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
-      const DosageRoute = [
-        { label: 'Subcutaneous', value: '1' },
-        { label: 'Item 2', value: '2' },
-        { label: 'Item 3', value: '3' },
-        { label: 'Item 4', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
-      const Frequency = [
-        { label: 'Morning Before Sleep', value: '1' },
-        { label: 'Item 2', value: '2' },
-        { label: 'Item 3', value: '3' },
-        { label: 'Item 4', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
-      const Duration = [
-        { label: '15 Days', value: '1' },
-        { label: 'Item 2', value: '2' },
-        { label: 'Item 3', value: '3' },
-        { label: 'Item 4', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
-      const AllowRefills = [
-        { label: 'Allow Once', value: '1' },
-        { label: 'Item 2', value: '2' },
-        { label: 'Item 3', value: '3' },
-        { label: 'Item 4', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
-    //   const [valueRadio] = React.useState('yes');
-      const [value, setValue] = React.useState('yes');
+    
       
   return (
     <ScrollView>
     <View style={[styles.backgroundCard,{height:'100%', borderRadius:10}]}>
     <View style={{flex:1}}><Text style={[styles.heading,{marginTop:10} ]}>Drug Name</Text>
     <View style={[styles.card]}>
-    <Dropdown onChange={(i)=>{console.log("first",i)}} data={DrugName}
+    <Dropdown onChange={(i)=>{setObj({
+      ...myObj,Name:i.label
+    })}} data={DrugName}
           maxHeight={300}
           containerStyle={{marginTop:8}}
           labelField="label"
-          valueField="value"></Dropdown>
+          valueField="value"
+         ></Dropdown>
     </View>
+    
     <Text style={[styles.heading]}>Dosage Route</Text>
     <View style={[styles.card]}>
-    <Dropdown onChange={(i)=>{console.log("first",i)}} data={DosageRoute}
+    <Dropdown onChange={(i)=>{setObj({
+      ...myObj,Route:i.label
+    });}} data={DosageRoute}
           maxHeight={300}
           containerStyle={{marginTop:8}}
           labelField="label"
@@ -138,7 +165,9 @@ const NewComponent = () => {
     </View>
     <Text style={[styles.heading]}>Frequency</Text>
     <View style={[styles.card]}>
-    <Dropdown onChange={(i)=>{console.log("first",i)}} data={Frequency}
+    <Dropdown onChange={(i)=>{setObj({
+      ...myObj,freq:i.label
+    })}} data={Frequency}
           maxHeight={300}
           containerStyle={{marginTop:8}}
           labelField="label"
@@ -146,7 +175,9 @@ const NewComponent = () => {
     </View>
     <Text style={[styles.heading]}>Duration</Text>
     <View style={[styles.card]}>
-    <Dropdown onChange={(i)=>{console.log("first",i)}} data={Duration}
+    <Dropdown onChange={(i)=>{setObj({
+      ...myObj,dur:i.label
+    })}} data={Duration}
           maxHeight={300}
           containerStyle={{marginTop:8}}
           labelField="label"
@@ -154,11 +185,15 @@ const NewComponent = () => {
     </View>
     <Text style={[styles.heading]}>Instructions</Text>
     <View >
-    <TextInput style={[styles.card,{height:40,}]} ></TextInput>
+    <TextInput style={[styles.card,{height:40,}]} >
+      
+    </TextInput>
     </View>
     <Text style={[styles.heading]}>Allow Refills</Text>
     <View style={[styles.card]}>
-    <Dropdown onChange={(i)=>{console.log("first",i)}} data={AllowRefills}
+    <Dropdown onChange={(i)=>{setObj({
+      ...myObj,refills:i.label
+    })}} data={AllowRefills}
           maxHeight={300}
           containerStyle={{marginTop:8}}
           labelField="label"
@@ -166,7 +201,9 @@ const NewComponent = () => {
     </View>
     <Text style={[styles.heading]}>Allow Generics</Text>
     <View style={{ flexDirection: 'row' }}>
-    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+    {/* <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}> */}
+    <RadioButton.Group onValueChange={newValue => {setObj({
+      ...myObj,generics:newValue});console.log("AllowGenerics",newValue)}} value={value}>
       <View style={{flexDirection:'row'}}>
       <View style={{marginLeft:10, flexDirection:'row',alignItems:"center"}}>
       <RadioButton value="yes" />
@@ -209,7 +246,7 @@ const NewComponent = () => {
       
     </Pressable>
 
-    <Pressable style={[styles.addMedicineBtn]}>
+    <Pressable style={[styles.addMedicineBtn]}  onPress={()=>{console.log("my object",myObj)}}>
           <View style={{height:20,width:'100%'}}>
           <Text style={{color:'white', textAlign:'center',  fontFamily:'roboto,bold'}}>ADD MEDICINE</Text>
           </View>
@@ -217,10 +254,12 @@ const NewComponent = () => {
         
     </View>
     </View>
+    
     </View>
     </ScrollView>
     
   )
+ 
 }
 
 export default NewComponent
